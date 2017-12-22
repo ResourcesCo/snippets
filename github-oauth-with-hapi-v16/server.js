@@ -24,6 +24,7 @@
 //   - run `now alias set https://auto-generated-subdomain.now.sh your-now-subdomain`
 //   - update the callback URL to https://your-now-subdomain.now.sh/login on the GitHub OAuth app page
 //   - open https://your-now-subdomain.now.sh/ in your browser
+// - live demo is at https://github-oauth-with-hapi-example.now.sh/
 'use strict';
 
 const Hapi = require('hapi');
@@ -40,6 +41,7 @@ async function start() {
 
   server.auth.strategy('session', 'cookie', {
     password: process.env.SESSION_KEY,
+    redirectTo: '/',
   });
 
   server.auth.strategy('github', 'bell', {
@@ -56,6 +58,7 @@ async function start() {
     path: '/',
     config: {
       auth: {strategy: 'session', mode: 'try'},
+      plugins: {'hapi-auth-cookie': {redirectTo: false}},
       handler: (request, reply) => {
         if (request.auth.credentials) {
           const {username, email} = request.auth.credentials;
@@ -89,8 +92,11 @@ async function start() {
   server.route({
     method: 'GET',
     path: '/secret',
-    handler: (request, reply) => {
-      reply('You should only see this when logged in.');
+    config: {
+      auth: 'session',
+      handler: (request, reply) => {
+        reply('You should only see this when logged in.');
+      }
     }
   });
 
