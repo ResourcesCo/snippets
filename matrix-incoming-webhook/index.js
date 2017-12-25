@@ -1,3 +1,5 @@
+// https://github.com/resources/snippets/tree/master/matrix-incoming-webhook
+//
 // 1. Go to [riot.im][riot] and sign up for an account
 // 2. Create a new channel
 // 3. Invite `@_webhook:t2bot.io` to your room, or your own webhook user

@@ -1,30 +1,32 @@
-// https://github.com/resources/snippets/blob/master/github-oauth-with-hapi-v16
-// 
-// - `npm init -y`
-// - `npm install hapi@16 hapi-auth-cookie@7 bell@8 --save`
-// - generate a session key:
-//     `export SESSION_KEY=$(node -e "console.log(require('crypto').randomBytes(64).toString('hex'))")`
-// - go to github.com > Settings > Developer Settings > OAuth Apps and add a new app
-//   - you can use your personal web page for the application URL and a temporary callback URL
-//   - you can change the callback URL later
-// - set the client ID: `export GITHUB_CLIENT_ID=YOUR_CLIENT_ID`
-// - set the client secret: `export GITHUB_CLIENT_SECRET=YOUR_CLIENT_SECRET`
-// - test with ngrok:
-//   - run `npm start`
-//   - in a new console tab, run `brew cask install ngrok`
-//   - run `ngrok http 3000`
-//   - set the callback URL to https://yourngrokurl.ngrok.io/login on the GitHub OAuth app page
-//   - open https://yourngrokurl.ngrok.io/ in your browser
-// - deploy with now:
-//   - set up https://zeit.co/now if you haven't already
-//   - run `now`:
-//           now -e SESSION_KEY=$SESSION_KEY \
-//               -e GITHUB_CLIENT_ID=$GITHUB_CLIENT_ID \
-//               -e GITHUB_CLIENT_SECRET=$GITHUB_CLIENT_SECRET
-//   - run `now alias set https://auto-generated-subdomain.now.sh your-now-subdomain`
-//   - update the callback URL to https://your-now-subdomain.now.sh/login on the GitHub OAuth app page
-//   - open https://your-now-subdomain.now.sh/ in your browser
-// - live demo is at https://github-oauth-with-hapi-example.now.sh/
+# GitHub OAuth with Hapi v16
+
+- `npm init -y`
+- `npm install hapi@16 hapi-auth-cookie@7 bell@8 --save`
+- generate a session key:
+    `export SESSION_KEY=$(node -e "console.log(require('crypto').randomBytes(64).toString('hex'))")`
+- go to github.com > Settings > Developer Settings > OAuth Apps and add a new app
+  - you can use your personal web page for the application URL and a temporary callback URL
+  - you can change the callback URL later
+- set the client ID: `export GITHUB_CLIENT_ID=YOUR_CLIENT_ID`
+- set the client secret: `export GITHUB_CLIENT_SECRET=YOUR_CLIENT_SECRET`
+- test with ngrok:
+  - run `npm start`
+  - in a new console tab, run `brew cask install ngrok`
+  - run `ngrok http 3000`
+  - set the callback URL to https://yourngrokurl.ngrok.io/login on the GitHub OAuth app page
+  - open https://yourngrokurl.ngrok.io/ in your browser
+- deploy with now:
+  - set up https://zeit.co/now if you haven't already
+  - run `now`:
+          now -e SESSION_KEY=$SESSION_KEY \
+              -e GITHUB_CLIENT_ID=$GITHUB_CLIENT_ID \
+              -e GITHUB_CLIENT_SECRET=$GITHUB_CLIENT_SECRET
+  - run `now alias set https://auto-generated-subdomain.now.sh your-now-subdomain`
+  - update the callback URL to https://your-now-subdomain.now.sh/login on the GitHub OAuth app page
+  - open https://your-now-subdomain.now.sh/ in your browser
+- live demo is at https://github-oauth-with-hapi-example.now.sh/
+
+``` js
 'use strict';
 
 const Hapi = require('hapi');
@@ -118,3 +120,4 @@ start().then(() => {
   console.error(err);
   process.exit(1);
 });
+```
