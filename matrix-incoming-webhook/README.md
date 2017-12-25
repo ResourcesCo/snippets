@@ -1,4 +1,4 @@
-# Matrix Incoming Webhook
+# [Matrix Incoming Webhook][url]
 
 1. Go to [riot.im][riot] and sign up for an account
 2. Create a new channel
@@ -14,6 +14,7 @@
 6. When you get a message, grab the token at the end of the URL and
    set the environment variable: `export WEBHOOK_TOKEN=<token>`
 
+[url]: https://github.com/resources/snippets/tree/master/matrix-incoming-webhook
 [riot]: https://riot.im/
 [webhook-bridge]: https://github.com/turt2live/matrix-appservice-webhooks
 ``` js

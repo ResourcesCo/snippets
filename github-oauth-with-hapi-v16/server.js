@@ -1,4 +1,4 @@
-// https://github.com/resources/snippets/blob/master/github-oauth-with-hapi-v16
+// # [GitHub OAuth with Hapi v16][url]
 // 
 // - `npm init -y`
 // - `npm install hapi@16 hapi-auth-cookie@7 bell@8 --save`
@@ -25,6 +25,8 @@
 //   - update the callback URL to https://your-now-subdomain.now.sh/login on the GitHub OAuth app page
 //   - open https://your-now-subdomain.now.sh/ in your browser
 // - live demo is at https://github-oauth-with-hapi-example.now.sh/
+//
+// [url]: https://github.com/resources/snippets/tree/master/github-oauth-with-hapi-v16
 'use strict';
 
 const Hapi = require('hapi');

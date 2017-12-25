@@ -1,4 +1,4 @@
-// https://github.com/resources/snippets/tree/master/matrix-incoming-webhook
+// # [Matrix Incoming Webhooks][url]
 //
 // 1. Go to [riot.im][riot] and sign up for an account
 // 2. Create a new channel
