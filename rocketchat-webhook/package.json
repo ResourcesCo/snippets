@@ -1,0 +1,15 @@
+{
+  "name": "rocketchat-webhook",
+  "version": "0.0.1",
+  "description": "RocketChat Webhook Example",
+  "main": "index.js",
+  "author": "Benjamin Atkin",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "micro"
+  },
+  "dependencies": {
+    "micro": "^9.0.2"
+  }
+}
