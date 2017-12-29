@@ -8,4 +8,5 @@ snippets for building API integrations
 
 ## Chat
 
+- [RocketChat Webhook](https://github.com/resources/snippets/blob/master/rocketchat-webhook)
 - [Matrix Incoming Webhook](https://github.com/resources/snippets/blob/master/matrix-incoming-webhook)
