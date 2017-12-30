@@ -40,6 +40,11 @@
     ``` bash
     node -e "process.stdout.write(require('crypto').randomBytes(32).toString('hex'))" | pbcopy
     ```
+
+    Then set `GITLAB_HTTPS` to `true`, `GITLAB_HOST` to the domain you're
+    using for GitLab (`gitlab.yourdomain.com`), and set GITLAB_PORT to
+    443. This won't change the port it's actually listening on. You'll
+    set a reverse proxy to handle that in a later step.
     
     After that, copy the file to your remote machine with scp:
 
@@ -88,7 +93,22 @@
     ``` bash
     curl -I https://gitlab4.benatkin.com/
     ```
-11. Proxy nginx to letsencrypt
+11. Proxy nginx to GitLab: Run `vi /etc/nginx/sites-enabled/default` and
+    replace the `location /` block with:
+
+    ``` bash
+    location / {
+            proxy_set_header X-Real-IP  $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto https;
+            proxy_set_header Host $host;
+            proxy_pass http://127.0.0.1:10080;
+    }
+    ```
+
+    Run `systemctl reload nginx` and try accessing your HTTPs URL
+    (https://gitlab.yourdomain.com/ in the example). Follow the instructions
+    to finish setting it up.
 
 
 [url]: https://github.com/resources/snippets/tree/master/setup-gitlab
