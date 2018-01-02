@@ -1,4 +1,4 @@
-# [GitHub OAuth with Hapi v17]tps://github.com/resources/snippets/tree/master/github-oauth-with-hapi-v16)
+# [GitHub OAuth with Hapi v17](https://github.com/resources/snippets/tree/master/github-oauth-with-hapi-v16)
 
 - `npm init -y`
 - `npm install hapi hapi-auth-cookie github:makeomatic/bell#hapi17 --save`
