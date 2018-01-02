@@ -1,0 +1,14 @@
+{
+  "name": "github-oauth-with-hapi-v17",
+  "version": "0.0.1",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "bell": "github:makeomatic/bell#hapi17",
+    "hapi": "^17.2.0",
+    "hapi-auth-cookie": "^8.0.0"
+  }
+}
