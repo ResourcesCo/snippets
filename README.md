@@ -11,3 +11,7 @@ snippets for building API integrations
 
 - [RocketChat Webhook](https://github.com/resources/snippets/blob/master/rocketchat-webhook)
 - [Matrix Incoming Webhook](https://github.com/resources/snippets/blob/master/matrix-incoming-webhook)
+
+## Maps
+
+- [Leaflet with Next](https://github.com/resources/snippets/blob/master/leaflet-with-next)
