@@ -15,3 +15,7 @@ snippets for building API integrations
 ## Maps
 
 - [Leaflet with Next](https://github.com/resources/snippets/blob/master/leaflet-with-next)
+
+## Code Editing
+
+- [CodeMirror with Next](https://github.com/resources/snippets/blob/master/codemirror-with-next)
