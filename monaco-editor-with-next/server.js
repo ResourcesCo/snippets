@@ -10,13 +10,16 @@ app.prepare()
 .then(() => {
   const server = express()
 
-  server.use('/vs', express.static(`${__dirname}/node_modules/monaco-editor/min/vs`))
+  server.use(
+    '/monaco-editor-external',
+    express.static(`${__dirname}/node_modules/@timkendrick/monaco-editor/dist/external`)
+  )
 
   server.get('*', (req, res) => {
     return handle(req, res)
   })
 
-  server.listen(port, (err) => {
+  server.listen(port, err => {
     if (err) throw err
     console.log(`> Ready on http://localhost:${port}`)
   })

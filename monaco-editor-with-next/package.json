@@ -6,6 +6,7 @@
     "start": "NODE_ENV=production node server.js"
   },
   "dependencies": {
+    "@timkendrick/monaco-editor": "0.0.7",
     "express": "^4.16.2",
     "next": "^4.2.1",
     "react": "^16.2.0",

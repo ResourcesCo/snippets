@@ -1,76 +1,55 @@
-# Monaco Editor with Next.js [WIP]
+# Monaco Editor with Next.js
 
-**WIP**: This is a work in progress. It works by obliterating the global `module`
-so Monaco will use AMD instead of commonjs-style loading.
+This uses [@timkendrick/monaco-editor](https://github.com/timkendrick/monaco-editor)
+which has support for the combination of WebPack and a node-like browser environment
+(that has global variables like `process` and `module` defined).
 
 ## Create the project and add the dependencies
 
-1. Create a next app: `create-next-app myapp`
-2. Install the dependencies: `npm install react-monaco-editor monaco-editor express --save`
+Create a next app:
 
-## Add the component and a wrapper component
+``` bash
+create-next-app myapp
+```
 
-**components/code-example.js**
+Install the dependencies:
+
+``` bash
+npm install react-monaco-editor @timkendrick/monaco-editor express --save`
+```
+
+## Add the component
+
+[components/code-editor.js](https://github.com/resources/snippets/blob/master/monaco-editor-with-next/components/code-editor.js)
 
 ``` jsx
+window.MonacoEnvironment = { baseUrl: '/monaco-editor-external' };
+import * as monaco from '@timkendrick/monaco-editor/dist/external'
 import React, { Component } from 'react'
 import MonacoEditor from 'react-monaco-editor'
 
-export default class CodeExample extends Component {
+export default class CodeEditor extends Component {
   render() {
-    const js = "class Pet {\n  constructor(name) {\n    this.name = name\n  }\n}"
-    const css = ".hello {\n  background-color: yellow;\n}"
     return (
-      <div>
-        <MonacoEditor
-          width={500}
-          height={200}
-          language="javascript"
-          theme="vs-dark"
-          value={js}
-          options={{selectOnLineNumbers: true}}
-          onChange={() => null}
-          editorDidMount={() => null}
-        />
-        <MonacoEditor
-          width={500}
-          height={200}
-          language="css"
-          theme="vs-dark"
-          value={css}
-          options={{selectOnLineNumbers: true}}
-          onChange={() => null}
-          editorDidMount={() => null}
-        />
-      </div>
+      <MonacoEditor
+        width={500}
+        height={200}
+        language="javascript"
+        theme="vs-dark"
+        value=""
+        options={{selectOnLineNumbers: true}}
+        onChange={() => null}
+        editorDidMount={() => null}
+        {...this.props}
+      />
     )
   }
 }
 ```
 
-**components/code-example-wrapper.js**
-
-``` jsx
-import dynamic from 'next/dynamic'
-import Head from 'next/head'
-const CodeExample = dynamic(import('../components/code-example'), {ssr: false})
-
-export default () => {
-  return (
-    <div>
-      <Head>
-        <script key="unset-module">{`window.module = undefined;`}</script>
-        <script src="/vs/loader.js" key="monaco-loader" />
-      </Head>
-      <CodeExample />
-    </div>
-  )
-}
-```
-
 ## Set up a custom server with a static middleware for Monaco Editor
 
-**server.js**
+[server.js](https://github.com/resources/snippets/blob/master/monaco-editor-with-next/server.js)
 
 ``` js
 const express = require('express')
@@ -85,13 +64,16 @@ app.prepare()
 .then(() => {
   const server = express()
 
-  server.use('/vs', express.static(`${__dirname}/node_modules/monaco-editor/min/vs`))
+  server.use(
+    '/monaco-editor-external',
+    express.static(`${__dirname}/node_modules/@timkendrick/monaco-editor/dist/external`)
+  )
 
   server.get('*', (req, res) => {
     return handle(req, res)
   })
 
-  server.listen(port, (err) => {
+  server.listen(port, err => {
     if (err) throw err
     console.log(`> Ready on http://localhost:${port}`)
   })
@@ -99,6 +81,8 @@ app.prepare()
 ```
 
 Change the `scripts` in `package.json` to use the custom server:
+
+[package.json](https://github.com/resources/snippets/blob/master/monaco-editor-with-next/package.json)
 
 ``` json
 {
@@ -111,17 +95,70 @@ Change the `scripts` in `package.json` to use the custom server:
 ## Use the component in a page
 
 To use this component, use a dynamic import with `ssr` set to `false`.
+These example pages show that Next.js can switch pages relatively cleanly
+with these editor components on them, thanks to `react-monaco-editor` and
+the [alternative build of monaco-editor](https://github.com/timkendrick/monaco-editor).
 
-**pages/index.js**
+[pages/index.js](https://github.com/resources/snippets/blob/master/monaco-editor-with-next/pages/index.js)
 
 ``` jsx
 import dynamic from 'next/dynamic'
-const CodeExampleWrapper = dynamic(import('../components/code-example-wrapper'), {ssr: false})
+const CodeEditor = dynamic(import('../components/code-editor'), {ssr: false})
+import Link from 'next/link'
+import Head from 'next/head'
 
 export default () => {
+  const someJs = [
+    "import {myCoolFunc} from './utils'",
+    'export default async () => {',
+    '  await myCoolFunc()',
+    '}'
+  ].join("\n")
   return (
     <div>
-      <CodeExampleWrapper />
+      <Head>
+        <link key="monaco-css" rel="stylesheet" href="/monaco-editor-external/monaco.css" />
+      </Head>
+      <div>
+        <Link href="/other-page"><a>Other Page</a></Link>
+      </div>
+      <CodeEditor language="javascript" value={someJs} />
+    </div>
+  )
+}
+```
+
+[pages/other-page.js](https://github.com/resources/snippets/blob/master/monaco-editor-with-next/pages/other-page.js)
+
+``` jsx
+import dynamic from 'next/dynamic'
+const CodeEditor = dynamic(import('../components/code-editor'), {ssr: false})
+import Link from 'next/link'
+import Head from 'next/head'
+
+export default () => {
+  const someCss = [
+    '.exampleDiv {',
+    '  background-color: #003;',
+    '  color: #ccc;',
+    '}'
+  ].join("\n")
+  const someJs = [
+    "import {myCoolFunc} from './utils'",
+    'export default async () => {',
+    '  await myCoolFunc()',
+    '}'
+  ].join("\n")
+  return (
+    <div>
+      <Head>
+        <link key="monaco-css" rel="stylesheet" href="/monaco-editor-external/monaco.css" />
+      </Head>
+      <div>
+        <Link href="/"><a>Home</a></Link>
+      </div>
+      <CodeEditor language="css" value={someCss} />
+      <CodeEditor language="javascript" value={someJs} />
     </div>
   )
 }

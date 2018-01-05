@@ -4,6 +4,12 @@ import Link from 'next/link'
 import Head from 'next/head'
 
 export default () => {
+  const someCss = [
+    '.exampleDiv {',
+    '  background-color: #003;',
+    '  color: #ccc;',
+    '}'
+  ].join("\n")
   const someJs = [
     "import {myCoolFunc} from './utils'",
     'export default async () => {',
@@ -16,8 +22,9 @@ export default () => {
         <link key="monaco-css" rel="stylesheet" href="/monaco-editor-external/monaco.css" />
       </Head>
       <div>
-        <Link href="/other-page"><a>Other Page</a></Link>
+        <Link href="/"><a>Home</a></Link>
       </div>
+      <CodeEditor language="css" value={someCss} />
       <CodeEditor language="javascript" value={someJs} />
     </div>
   )
