@@ -2,25 +2,31 @@
 
 snippets for building API integrations
 
-## Authentication
+## Frontend
+
+### Maps
+
+- [Leaflet with Next and OpenStreetMaps](https://github.com/resources/snippets/blob/master/docs/leaflet-with-next.md)
+
+### Code Editing
+
+- [CodeMirror with Next](https://github.com/resources/snippets/blob/master/docs/codemirror-with-next.md)
+- [Monaco Editor with Next](https://github.com/resources/snippets/blob/master/monaco-editor-with-next)
+
+## Backend
+
+### Authentication
+
+#### Hapi.js
 
 - [GitHub OAuth with Hapi v16](https://github.com/resources/snippets/blob/master/github-oauth-with-hapi-v16)
 - [GitLab Oauth with Hapi v16](https://github.com/resources/snippets/blob/master/gitlab-oauth-with-hapi-v16)
 
-## Chat
+### Chat
 
 - [RocketChat Webhook](https://github.com/resources/snippets/blob/master/rocketchat-webhook)
 - [Matrix Incoming Webhook](https://github.com/resources/snippets/blob/master/matrix-incoming-webhook)
 
-## Functions
+### Functions
 
 - [OpenWhisk](https://github.com/resources/snippets/blob/master/openwhisk)
-
-## Maps
-
-- [Leaflet with Next](https://github.com/resources/snippets/blob/master/leaflet-with-next)
-
-## Code Editing
-
-- [CodeMirror with Next](https://github.com/resources/snippets/blob/master/codemirror-with-next)
-- [Monaco Editor with Next](https://github.com/resources/snippets/blob/master/monaco-editor-with-next)

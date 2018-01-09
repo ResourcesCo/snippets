@@ -1,6 +1,7 @@
 import dynamic from 'next/dynamic'
 import NextHead from 'next/head'
-const HelloWorldMap = dynamic(import('../components/HelloWorldMap'), {ssr: false})
+const HelloWorldMap = dynamic(import('../components/hello-world-map'), {ssr: false})
+import Nav from '../components/nav'
 
 export default () => {
   return (
@@ -10,6 +11,7 @@ export default () => {
       integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ=="
       crossorigin="" key="leaflet.css"/>
       </NextHead>
+      <Nav/>
       <HelloWorldMap />
     </div>
   )

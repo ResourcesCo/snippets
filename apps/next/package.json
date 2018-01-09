@@ -6,10 +6,12 @@
     "start": "next start"
   },
   "dependencies": {
+    "codemirror": "^5.33.0",
     "leaflet": "^1.2.0",
     "next": "^4.2.1",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
+    "react-codemirror2": "^3.0.7",
     "react-dom": "^16.2.0",
     "react-leaflet": "^1.7.8"
   }
