@@ -1,6 +1,6 @@
 # Monaco Editor with Next.js
 
-[![live demo](https://img.shields.io/badge/live-demo-green.svg?style=plastic)](https://resourcessnippets-next-wwvobxipbj.now.sh/monaco)
+[![live demo](https://img.shields.io/badge/live-demo-green.svg?style=plastic)](https://resourcessnippets-next-wmiqaxnerc.now.sh/monaco)
 
 This uses [@timkendrick/monaco-editor](https://github.com/timkendrick/monaco-editor)
 which has support for the combination of WebPack and a node-like browser environment

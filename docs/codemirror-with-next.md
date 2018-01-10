@@ -1,6 +1,6 @@
 # [CodeMirror with Next](https://github.com/resources/snippets/blob/master/codemirror-with-next)
 
-[![live demo](https://img.shields.io/badge/live-demo-green.svg?style=plastic)](https://resourcessnippets-next-wwvobxipbj.now.sh/codemirror)
+[![live demo](https://img.shields.io/badge/live-demo-green.svg?style=plastic)](https://resourcessnippets-next-wmiqaxnerc.now.sh/codemirror)
 
 ## create & configure the app
 
@@ -33,10 +33,6 @@ export default (props) => (
       options={{theme: 'material', mode: 'javascript'}}
       onChange={() => null}
     />
-    <style jsx global>{`
-      @import url('https://unpkg.com/codemirror@5.33.0/lib/codemirror.css');
-      @import url('https://unpkg.com/codemirror@5.33.0/theme/material.css');
-    `}</style>
   </div>
 )
 ```
@@ -50,10 +46,15 @@ To use this component, use a dynamic import with `ssr` set to `false`:
 ``` jsx
 import dynamic from 'next/dynamic'
 const CodeWithCodemirror = dynamic(import('../components/code-with-codemirror'), {ssr: false})
+import Head from 'next/head'
 
 export default () => {
   return (
     <div>
+      <Head>
+        <link key="codemirror-css-lib" rel="stylesheet" href="https://unpkg.com/codemirror@5.33.0/lib/codemirror.css" />
+        <link key="codemirror-css-theme-material" rel="stylesheet" href="https://unpkg.com/codemirror@5.33.0/theme/material.css" />
+      </Head>
       <CodeWithCodemirror value={"for (var i=0; i < 10; i++) {\n  console.log(i)\n}"} />
     </div>
   )

@@ -10,9 +10,5 @@ export default (props) => (
       options={{theme: 'material', mode: 'javascript'}}
       onChange={() => null}
     />
-    <style jsx global>{`
-      @import url('https://unpkg.com/codemirror@5.33.0/lib/codemirror.css');
-      @import url('https://unpkg.com/codemirror@5.33.0/theme/material.css');
-    `}</style>
   </div>
 )
