@@ -1,5 +1,7 @@
 # Leaflet with Next
 
+[![live demo](https://img.shields.io/badge/live-demo.svg?style=plastic)](https://resourcessnippets-next-wwvobxipbj.now.sh/leaflet)
+
 ## create & configure the app
 
 Create a next app:
