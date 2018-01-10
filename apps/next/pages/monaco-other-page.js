@@ -1,7 +1,8 @@
 import dynamic from 'next/dynamic'
-const CodeEditor = dynamic(import('../components/code-editor'), {ssr: false})
+const CodeWithMonaco = dynamic(import('../components/code-with-monaco'), {ssr: false})
 import Link from 'next/link'
 import Head from 'next/head'
+import Nav from '../components/nav'
 
 export default () => {
   const someCss = [
@@ -24,8 +25,9 @@ export default () => {
       <div>
         <Link href="/"><a>Home</a></Link>
       </div>
-      <CodeEditor language="css" value={someCss} />
-      <CodeEditor language="javascript" value={someJs} />
-    </div>
+      <CodeWithMonaco language="css" value={someCss} />
+      <CodeWithMonaco language="javascript" value={someJs} />
+      <Nav/>
+   </div>
   )
 }

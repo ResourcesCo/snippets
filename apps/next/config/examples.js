@@ -7,6 +7,10 @@ export default (
     {
       title: "CodeMirror",
       url: "/codemirror"
+    },
+    {
+      title: "Monaco Editor",
+      url: "/monaco"
     }
   ]
 )

@@ -20,7 +20,7 @@ npm install react-monaco-editor @timkendrick/monaco-editor express --save`
 
 ## Add the component
 
-[components/code-editor.js](https://github.com/resources/snippets/blob/master/monaco-editor-with-next/components/code-editor.js)
+[components/code-with-monaco.js](https://github.com/resources/snippets/blob/master/apps/next/components/code-with-monaco.js)
 
 ``` jsx
 window.MonacoEnvironment = { baseUrl: '/monaco-editor-external' };
@@ -28,28 +28,24 @@ import * as monaco from '@timkendrick/monaco-editor/dist/external'
 import React, { Component } from 'react'
 import MonacoEditor from 'react-monaco-editor'
 
-export default class CodeEditor extends Component {
-  render() {
-    return (
-      <MonacoEditor
-        width={500}
-        height={200}
-        language="javascript"
-        theme="vs-dark"
-        value=""
-        options={{selectOnLineNumbers: true}}
-        onChange={() => null}
-        editorDidMount={() => null}
-        {...this.props}
-      />
-    )
-  }
-}
+export default (props) => (
+  <MonacoEditor
+    width={500}
+    height={200}
+    language="javascript"
+    theme="vs-dark"
+    value=""
+    options={{selectOnLineNumbers: true}}
+    onChange={() => null}
+    editorDidMount={() => null}
+    {...props}
+  />
+)
 ```
 
 ## Set up a custom server with a static middleware for Monaco Editor
 
-[server.js](https://github.com/resources/snippets/blob/master/monaco-editor-with-next/server.js)
+[server.js](https://github.com/resources/snippets/blob/master/apps/next/server.js)
 
 ``` js
 const express = require('express')
@@ -82,7 +78,7 @@ app.prepare()
 
 Change the `scripts` in `package.json` to use the custom server:
 
-[package.json](https://github.com/resources/snippets/blob/master/monaco-editor-with-next/package.json)
+[package.json](https://github.com/resources/snippets/blob/master/apps/next/package.json)
 
 ``` json
 {
@@ -99,11 +95,11 @@ These example pages show that Next.js can switch pages relatively cleanly
 with these editor components on them, thanks to `react-monaco-editor` and
 the [alternative build of monaco-editor](https://github.com/timkendrick/monaco-editor).
 
-[pages/index.js](https://github.com/resources/snippets/blob/master/monaco-editor-with-next/pages/index.js)
+[pages/monaco.js](https://github.com/resources/snippets/blob/master/monaco-editor-with-next/pages/monaco.js)
 
 ``` jsx
 import dynamic from 'next/dynamic'
-const CodeEditor = dynamic(import('../components/code-editor'), {ssr: false})
+const CodeWithMonaco = dynamic(import('../components/code-with-monaco'), {ssr: false})
 import Link from 'next/link'
 import Head from 'next/head'
 
@@ -120,19 +116,19 @@ export default () => {
         <link key="monaco-css" rel="stylesheet" href="/monaco-editor-external/monaco.css" />
       </Head>
       <div>
-        <Link href="/other-page"><a>Other Page</a></Link>
+        <Link href="/monaco-other-page"><a>Other Page</a></Link>
       </div>
-      <CodeEditor language="javascript" value={someJs} />
+      <CodeWithMonaco language="javascript" value={someJs} />
     </div>
   )
 }
 ```
 
-[pages/other-page.js](https://github.com/resources/snippets/blob/master/monaco-editor-with-next/pages/other-page.js)
+[pages/other-page.js](https://github.com/resources/snippets/blob/master/monaco-editor-with-next/pages/monaco-other-page.js)
 
 ``` jsx
 import dynamic from 'next/dynamic'
-const CodeEditor = dynamic(import('../components/code-editor'), {ssr: false})
+const CodeWithMonaco = dynamic(import('../components/code-with-monaco'), {ssr: false})
 import Link from 'next/link'
 import Head from 'next/head'
 
@@ -157,9 +153,9 @@ export default () => {
       <div>
         <Link href="/"><a>Home</a></Link>
       </div>
-      <CodeEditor language="css" value={someCss} />
-      <CodeEditor language="javascript" value={someJs} />
-    </div>
+      <CodeWithMonaco language="css" value={someCss} />
+      <CodeWithMonaco language="javascript" value={someJs} />
+   </div>
   )
 }
 ```

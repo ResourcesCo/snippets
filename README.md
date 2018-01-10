@@ -11,7 +11,7 @@ snippets for building API integrations
 ### Code Editing
 
 - [CodeMirror with Next](https://github.com/resources/snippets/blob/master/docs/codemirror-with-next.md)
-- [Monaco Editor with Next](https://github.com/resources/snippets/blob/master/monaco-editor-with-next)
+- [Monaco Editor with Next](https://github.com/resources/snippets/blob/master/docs/monaco-editor-with-next.md)
 
 ## Backend
 

@@ -1,9 +1,10 @@
 {
-  "name": "create-next-example-app",
+  "name": "@resources/snippets-next",
+  "private": true,
   "scripts": {
-    "dev": "next",
+    "dev": "node server.js",
     "build": "next build",
-    "start": "next start"
+    "start": "NODE_ENV=production node server.js"
   },
   "dependencies": {
     "codemirror": "^5.33.0",
@@ -13,6 +14,9 @@
     "react": "^16.2.0",
     "react-codemirror2": "^3.0.7",
     "react-dom": "^16.2.0",
-    "react-leaflet": "^1.7.8"
+    "react-leaflet": "^1.7.8",
+    "@timkendrick/monaco-editor": "0.0.7",
+    "express": "^4.16.2",
+    "react-monaco-editor": "^0.13.0"
   }
 }
