@@ -13,9 +13,6 @@ export default () => {
   ].join("\n")
   return (
     <div>
-      <Head>
-        <link key="monaco-css" rel="stylesheet" href="/monaco-editor-external/monaco.css" />
-      </Head>
       <div>
         <Link href="/monaco-other-page"><a>Other Page</a></Link>
       </div>

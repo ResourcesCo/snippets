@@ -1,6 +1,6 @@
-# [CodeMirror with Next](https://github.com/resources/snippets/blob/master/codemirror-with-next)
+# CodeMirror with Next
 
-[![live demo](https://img.shields.io/badge/live-demo-green.svg?style=plastic)](https://resourcessnippets-next-wmiqaxnerc.now.sh/codemirror)
+[![live demo](https://img.shields.io/badge/live-demo-green.svg?style=plastic)](https://resourcessnippets-next-hqozwsosfk.now.sh/codemirror)
 
 ## create & configure the app
 
