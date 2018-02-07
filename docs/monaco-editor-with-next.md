@@ -17,7 +17,7 @@ create-next-app myapp
 Install the dependencies:
 
 ``` bash
-npm install react-monaco-editor @timkendrick/monaco-editor express --save`
+npm install react-monaco-editor @timkendrick/monaco-editor express @zeit/next-css css-loader --save`
 ```
 
 ## Add the component
@@ -29,6 +29,7 @@ window.MonacoEnvironment = { baseUrl: '/monaco-editor-external' };
 import * as monaco from '@timkendrick/monaco-editor/dist/external'
 import React, { Component } from 'react'
 import MonacoEditor from 'react-monaco-editor'
+import '../node_modules/@timkendrick/monaco-editor/dist/external/monaco.css'
 
 export default (props) => (
   <MonacoEditor
@@ -43,6 +44,24 @@ export default (props) => (
     {...props}
   />
 )
+```
+
+## Set up the CSS loader for webpack
+
+[next.config.js](https://github.com/resources/snippets/blob/master/apps/next/next.config.js)
+
+``` js
+const withCSS = require('@zeit/next-css')
+module.exports = withCSS({
+  webpack: (config) => {
+    // Fixes npm packages that depend on `fs` module
+    config.node = {
+      fs: 'empty'
+    }
+
+    return config
+  }
+})
 ```
 
 ## Set up a custom server with a static middleware for Monaco Editor
@@ -103,7 +122,6 @@ the [alternative build of monaco-editor](https://github.com/timkendrick/monaco-e
 import dynamic from 'next/dynamic'
 const CodeWithMonaco = dynamic(import('../components/code-with-monaco'), {ssr: false})
 import Link from 'next/link'
-import Head from 'next/head'
 
 export default () => {
   const someJs = [
@@ -114,9 +132,6 @@ export default () => {
   ].join("\n")
   return (
     <div>
-      <Head>
-        <link key="monaco-css" rel="stylesheet" href="/monaco-editor-external/monaco.css" />
-      </Head>
       <div>
         <Link href="/monaco-other-page"><a>Other Page</a></Link>
       </div>
@@ -132,7 +147,6 @@ export default () => {
 import dynamic from 'next/dynamic'
 const CodeWithMonaco = dynamic(import('../components/code-with-monaco'), {ssr: false})
 import Link from 'next/link'
-import Head from 'next/head'
 
 export default () => {
   const someCss = [
@@ -149,11 +163,8 @@ export default () => {
   ].join("\n")
   return (
     <div>
-      <Head>
-        <link key="monaco-css" rel="stylesheet" href="/monaco-editor-external/monaco.css" />
-      </Head>
       <div>
-        <Link href="/"><a>Home</a></Link>
+        <Link href="/monaco"><a>Home</a></Link>
       </div>
       <CodeWithMonaco language="css" value={someCss} />
       <CodeWithMonaco language="javascript" value={someJs} />

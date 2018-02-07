@@ -1,7 +1,6 @@
 import dynamic from 'next/dynamic'
 const CodeWithMonaco = dynamic(import('../components/code-with-monaco'), {ssr: false})
 import Link from 'next/link'
-import Head from 'next/head'
 import Nav from '../components/nav'
 
 export default () => {
@@ -20,7 +19,7 @@ export default () => {
   return (
     <div>
       <div>
-        <Link href="/"><a>Home</a></Link>
+        <Link href="/monaco"><a>Home</a></Link>
       </div>
       <CodeWithMonaco language="css" value={someCss} />
       <CodeWithMonaco language="javascript" value={someJs} />

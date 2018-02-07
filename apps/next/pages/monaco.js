@@ -1,7 +1,6 @@
 import dynamic from 'next/dynamic'
 const CodeWithMonaco = dynamic(import('../components/code-with-monaco'), {ssr: false})
 import Link from 'next/link'
-import Head from 'next/head'
 import Nav from '../components/nav'
 
 export default () => {
