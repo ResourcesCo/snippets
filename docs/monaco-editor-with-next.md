@@ -17,7 +17,7 @@ create-next-app myapp
 Install the dependencies:
 
 ``` bash
-npm install react-monaco-editor @timkendrick/monaco-editor express @zeit/next-css css-loader --save`
+npm install react-monaco-editor @timkendrick/monaco-editor express @zeit/next-css css-loader --save
 ```
 
 ## Add the component
